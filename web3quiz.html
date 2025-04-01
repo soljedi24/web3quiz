@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blockchain Quiz Competition</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('https://source.unsplash.com/1600x900/?technology,blockchain') no-repeat center center fixed;
+            background-size: cover;
+            text-align: center;
+            color: white;
+        }
+        .quiz-container {
+            width: 60%;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+        .question {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+        .options label {
+            display: block;
+            margin: 5px 0;
+            cursor: pointer;
+        }
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+        .submit-btn {
+            background: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .submit-btn:hover {
+            background: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h2>Blockchain Quiz Competition</h2>
+    </div>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blockchain Quiz Competition</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: url('https://source.unsplash.com/1600x900/?technology,blockchain') no-repeat center center fixed;
+            background-size: cover;
+            text-align: center;
+            color: white;
+        }
+        .quiz-container {
+            width: 60%;
+            background: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+        .question {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+        .options label {
+            display: block;
+            margin: 5px 0;
+            cursor: pointer;
+        }
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+        .submit-btn {
+            background: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+        .submit-btn:hover {
+            background: #218838;
+        }
+        #score {
+            font-size: 20px;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h2>Blockchain Quiz Competition</h2>
+        <form id="quizForm">
+            <div id="questions"></div>
+            <button type="button" class="submit-btn" onclick="calculateScore()">Submit</button>
+        </form>
+        <div id="score"></div>
+    </div>
+    <script>
+        const quizData = [
+            { question: "What is the native cryptocurrency of the Solana blockchain?", options: ["SOL", "ETH", "BTC"], answer: "SOL" },
+            { question: "Which consensus mechanism does Solana use?", options: ["Proof of Work", "Proof of History", "Delegated Proof of Stake"], answer: "Proof of History" },
+            { question: "What is the maximum supply of Bitcoin?", options: ["21 Million", "50 Million", "Unlimited"], answer: "21 Million" },
+            { question: "What does NFT stand for?", options: ["Non-Fungible Token", "New Financial Technology", "Network Fund Transfer"], answer: "Non-Fungible Token" },
+            { question: "Which blockchain is primarily known for smart contracts?", options: ["Ethereum", "Bitcoin", "Dogecoin"], answer: "Ethereum" },
+            { question: "What is the smallest unit of Bitcoin called?", options: ["Satoshi", "Wei", "Gwei"], answer: "Satoshi" },
+            { question: "What is the main purpose of a blockchain?", options: ["Secure transactions", "Store personal data", "Play games"], answer: "Secure transactions" },
+            { question: "Which company created Solana?", options: ["ConsenSys", "Lyona Labs", "Solana Labs"], answer: "Solana Labs" },
+            { question: "What is a DAO in blockchain?", options: ["Decentralized Autonomous Organization", "Digital Asset Offering", "Data Analytics Operation"], answer: "Decentralized Autonomous Organization" },
+            { question: "What is gas in Ethereum?", options: ["Transaction fee", "New token", "Blockchain storage"], answer: "Transaction fee" },
+            { question: "What is the Christex Foundation known for in Sierra Leone?", options: ["Blockchain education", "Stock trading", "Cloud computing"], answer: "Blockchain education" },
+            { question: "What type of bounties does the Christex Foundation offer?", options: ["Engineering", "Gaming Tournaments", "Music Contests"], answer: "Engineering" },
+            { question: "Who can participate in Christex Foundation bounties?", options: ["Solana Citizens", "Sierra Leone citizens", "Anyone with a YouTube channel"], answer: "Sierra Leone citizens" },
+            { question: "Which wallet is primarily associated with Solana?", options: ["Phantom", "Solflare", "Trust"], answer: "Solflare" },
+            { question: "Which DAO host is primarily associated with Solana?", options: ["OpenDAO", "Aragon", "Realms"], answer: "Realms" }
+        ];
+
+        const quizContainer = document.getElementById("questions");
+        quizData.forEach((item, index) => {
+            let questionBlock = document.createElement("div");
+            questionBlock.classList.add("question-block");
+            questionBlock.innerHTML = `<div class='question'>${index + 1}. ${item.question}</div>`;
+            let optionsHTML = "";
+            item.options.forEach(option => {
+                optionsHTML += `<label><input type='radio' name='q${index}' value='${option}'> ${option}</label>`;
+            });
+            questionBlock.innerHTML += `<div class='options'>${optionsHTML}</div>`;
+            quizContainer.appendChild(questionBlock);
+        });
+
+        function calculateScore() {
+            let score = 0;
+            quizData.forEach((item, index) => {
+                const selectedOption = document.querySelector(`input[name='q${index}']:checked`);
+                if (selectedOption && selectedOption.value === item.answer) {
+                    score++;
+                }
+            });
+            document.getElementById("score").innerText = `Your Score: ${score}/${quizData.length}`;
+        }
+    </script>
+</body>
+</html>
